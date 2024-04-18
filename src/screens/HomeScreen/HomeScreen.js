@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   View,
   SafeAreaView,
@@ -12,9 +12,32 @@ import VersionCheck from 'react-native-version-check'
 import { Text } from '@rneui/themed'
 import { SECONDARY_COLOR, imageAssets } from '../../config'
 import styles from './styles/style'
+import HomeService from './services/HomeService'
 
-const HomeScreen = ({ navigation }) => {
-  console.log(navigation)
+const HomeScreen = ({ }) => {
+    const {
+      userInfo
+    } = useContext(AuthContext)
+    const [caisse, setCaisse] = useState({
+      amount: 0
+    })
+
+    const handleFetshCaisse = async () => {
+      setCaisse(await HomeService.getMyCaisse(userInfo.token))
+    }
+
+    const handLogout = () => {
+      console.log(' here ')
+      //logout()
+    }
+    useEffect(() => {
+      handleFetshCaisse()
+    
+      return () => {
+        
+      }
+    }, [])
+    
   return (
     <>
       <Spinner visible={false} />
@@ -25,14 +48,14 @@ const HomeScreen = ({ navigation }) => {
           <View style={styles.image}>
             <View style={[styles.header, { paddingHorizontal: 20 }]}>
               <View style={[styles.userContainer]}>
-                <Text style={styles.userText}>{"Romeo"}</Text>
+                <Text style={styles.userText}>{userInfo.user.name}</Text>
               </View>
             </View>
             <View>
               <View style={styles.infoContainer}>
                 <View style={styles.row}>
                   <Text style={styles.cell}>Ambim-bolako</Text>
-                  <Text style={styles.cell}>2000 ar</Text>
+                  <Text style={styles.cell}>{caisse.amount} ar</Text>
                 </View>
                 <View style={styles.row}>
                   <Text style={styles.cell}>Volako ani anaty boitindrakitra</Text>
@@ -56,7 +79,7 @@ const HomeScreen = ({ navigation }) => {
               </View>
             </View>
             <View style={{
-              flex: 1,
+              flex: 1
             }}>
                <View style={styles.menuContainer}>
                 <MenuBox
@@ -73,25 +96,25 @@ const HomeScreen = ({ navigation }) => {
               <View style={styles.menuContainer}>
                 <MenuBox
                   imgSrc={imageAssets.hakarano}
-                  text="HAKA RANO"
+                  text="FANDEHANY VOLA"
                   onPress={() => { }}
                 />
                 <MenuBox
                   imgSrc={imageAssets.hakarano}
-                  text="HAKA RANO"
+                  text="HANAO RECHARGE"
                   onPress={() => { }}
                 />
               </View>
               <View style={styles.menuContainer}>
                 <MenuBox
-                  imgSrc={imageAssets.hakarano}
+                  imgSrc={imageAssets.boitindrakitra}
                   text="BOITINDRAKITRA"
                   onPress={() => navigation.navigate("BoitindrakitraScreen")}
                 />
                 <MenuBox
-                  imgSrc={imageAssets.hakarano}
-                  text="HAKA RANO"
-                  onPress={() => { }}
+                  imgSrc={imageAssets.logout}
+                  text="HIALA NY APPLICATION"
+                  onPress={handLogout}
                 />
               </View>
             </View>
