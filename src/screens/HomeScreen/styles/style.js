@@ -44,9 +44,7 @@ const styles = StyleSheet.create({
         alignContent: 'flex-end'
     },
     menuContainer: {
-        flex:1,
-        marginHorizontal: 5,
-        flexDirection: 'row'
+        flexDirection: "row", justifyContent:"space-between"
     },
     image: {
         flex: 1,
@@ -56,25 +54,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         padding: 10,
-        paddingVertical: 20,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc'
     },
     cell: {
-        flex: 1
+        flex: 1,
+        alignContent: 'center',
+        justifyContent: 'center',
     },
     infoContainer: {
     },
     badgeContainer: {
-        width: 200, // Adjust size as needed
-        height: 200, // Ensure width and height are the same for a perfect circle
-        borderRadius: 100, // Half of the width/height
-        backgroundColor: SECONDARY_COLOR, // Tomato color for the background
+        width: 150, 
+        height: 150, 
+        borderRadius: 50, 
+        backgroundColor: SECONDARY_COLOR, 
         justifyContent: 'center',
         alignItems: 'center'
       },
       badgeText: {
-        color: '#fff', // White text
+        color: '#fff', 
         fontSize: 16,
         fontWeight: 'bold'
       },

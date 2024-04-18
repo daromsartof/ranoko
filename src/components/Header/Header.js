@@ -8,7 +8,7 @@ const CustomHeader = (props) => {
             backgroundImageStyle={{}}
             barStyle="default"
             centerComponent={<View style={{ flex: 1, justifyContent: "center" }}>
-                <Text style={{ color: "#ffff" ,fontSize: 18,fontWeight: 'bold' }}>
+                <Text style={{ color: "#ffff" ,fontSize: 15,fontWeight: 'bold' }}>
                     {props.options.title.toLocaleUpperCase()}
                 </Text>
             </View>}

@@ -12,7 +12,7 @@ export const INDICATEURS_URL = `${BASE_URL}/indicateurs`
 export const LAST_MAJ_URL = `${BASE_URL}/dossier/{{dossier_id}}/last-maj`
 export const PRIMARY_COLOR = '#90a333'
 export const ERROR_COLOR = '#6a201c'
-export const SECONDARY_COLOR = '#3991c4'
+export const SECONDARY_COLOR = '#049fe9'
 
 export const SHADOW_COLOR = '#8d8d8d'
 export const SHADOW_OPACITY = 1
@@ -22,22 +22,8 @@ export const imageAssets = {
     login: require('../assets/images/connexion.png'),
     hakarano: require('../assets/images/hakarano.png'),
     ireompakarano: require('../assets/images/ireompakarano.png'),
-    echeance: require('../assets/images/echeances.png'),
-    logout: require('../assets/images/logout.png'),
-    ged: require('../assets/images/GED1.png'),
-    indicateurs: require('../assets/images/indicateurs.png'),
     bg: require('../assets/images/logoRanoko.png'),
-    message: require('../assets/images/message.png'),
-    tableauDeBord: require('../assets/images/tableau.png'),
-    tableauDeBord2: require('../assets/images/tableau2.png'),
-    tableauDeBord3: require('../assets/images/tableau5.png'),
-    tableauDeBord4: require('../assets/images/tableau4.png'),
-    VENTES: require('../assets/images/ventes.jpg'),
-    "TRESORERIE FIN DE PERIODE":require('../assets/images/tresoreries.png'),
-    "MARGE BRUTE":require('../assets/images/margesBrutes.jpg'),
-    "EXCEDENT BRUT D'EXPLPOITATION":require('../assets/images/EBE.jpg'),
-    "NOMBRE DE JOURS CLIENTS":require('../assets/images/nombreClient.jpg'),
-    "CHARGES D'EXPLOITATION":require('../assets/images/chargEexploitaiton.png')
+    hakaranoIllustration: require('../assets/images/hakaranoillustration.webp'),
 }
 
 export const CALANDAR_CONFIG = {

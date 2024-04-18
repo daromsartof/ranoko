@@ -2,18 +2,16 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../context/AuthContext'
-import GedScreen from '../../screens/GedScreen'
-import HistoryScreen from '../../screens/HistoryScreen'
+import ListUserScreen from '../../screens/ListUserScreen'
 import HomeScreen from '../../screens/HomeScreen'
-import PdfScreen from '../../screens/PdfScreen'
-import SendingScreen from '../../screens/SendingScreen'
 import SignInScreen from '../../screens/SignInScreen'
 import SplashScreen from '../../screens/SplashScreen'
-import TestScreen from '../../screens/TestScreen'
-import InProgressScreen from '../../screens/InProgressScreen'
-import IndicateurScreen from '../../screens/IndicateurScreen'
-import PieceManquante from '../../screens/PieceManquante'
+
 import Header from '../Header'
+import TakeWaterScreen from '../../screens/TakeWaterScreen'
+import BoitindrakitraScreen from '../../screens/BoitindrakitraScreen'
+import BoitindrakitraHistoryScreen from '../../screens/BoitindrakitraScreen/BoitindrakitraHistoryScreen'
+import UserProfileScreen from '../../screens/UserProfileScreen/UserProfileScreen'
 
 const Stack = createNativeStackNavigator()
 
@@ -51,7 +49,6 @@ const Navigation = () => {
           />
         ) : userInfo.token ? (
           <>
-            {/* <Stack.Screen name= "test" component={IndicateurScreen}/> */}
 
             <Stack.Screen
               name="Home"
@@ -59,45 +56,29 @@ const Navigation = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="Sending"
-              component={SendingScreen}
-              options={{ title: 'Envoi Image' }}
+              name="ListUserScreen"
+              component={ListUserScreen}
+              options={{ title: "Lisitrin'ny mpampiasa rano" }}
             />
             <Stack.Screen
-              name="History"
-              component={HistoryScreen}
-              options={{ title: 'Images déjà envoyées' }}
+              name="TakeWaterScreen"
+              component={TakeWaterScreen}
+              options={{ title: "Haka Rano" }}
+            />
+             <Stack.Screen
+              name="BoitindrakitraScreen"
+              component={BoitindrakitraScreen}
+              options={{ title: "Boitindrakitra" }}
             />
             <Stack.Screen
-              name="Ged"
-              component={GedScreen}
-              options={{ title: 'GED' }}
+              name="BoitindrakitraHistoryScreen"
+              component={BoitindrakitraHistoryScreen}
+              options={{ title: "Historika Boitindrakitra" }}
             />
-            <Stack.Screen
-              name="Pdfscreen"
-              component={PdfScreen}
-              options={{ title: 'Image' }}
-            />
-            <Stack.Screen
-              name="Indicateur"
-              component={IndicateurScreen}
-              options={{ title: 'Indicateur' }}
-
-            />
-            <Stack.Screen
-              name="Piecemanquante"
-              component={PieceManquante}
-                options={
-                  { 
-                    title: 'Echéances et Pièces'
-                  }
-                }
-
-            />
-            <Stack.Screen
-              name="InProgress"
-              component={InProgressScreen}
-              options={{ title: 'En cours ...' }}
+             <Stack.Screen
+              name="UserProfileScreen"
+              component={UserProfileScreen}
+              options={{ title: "Profile" }}
             />
           </>
         ) : (

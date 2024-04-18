@@ -25,27 +25,32 @@ const styles = StyleSheet.create({
     label: {
         fontFamily: 'Fontastique',
         fontWeight: 'bold',
+        textAlign:"center",
         fontSize: 14,
         color: 'white'
     },
     image: {
-        width: 130,
-        height: 130
+        width: 90,
+        height: 90
     }
 })
 
 const MenuBox = ({ icon, text, onPress, bgColor, imgSrc }) => {
     return (
-        <Pressable onPress={onPress} style={styles.container} >
-            <View style={styles.content}>
-                {icon ? <Icon name={icon} size={60} color="#595c5a" /> : (
-                    <Image style={styles.image} source={imgSrc} />
-                )}
-            </View>
-            <View style={[styles.footer, {backgroundColor: bgColor || SECONDARY_COLOR}]}>
-                <Text style={styles.label}>{text}</Text>
+
+        <Pressable onPress={onPress} style={{ flex: 0.5, margin: 5 }}>
+            <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"center" }}>
+                <View>
+                    {icon ? <Icon name={icon} size={60} color="#595c5a" /> : (
+                        <Image style={styles.image} source={imgSrc} />
+                    )}
+                </View>
+                <View style={[{width: "100%",paddingVertical:5, backgroundColor: bgColor || SECONDARY_COLOR }]}>
+                    <Text style={styles.label}>{text}</Text>
+                </View>
             </View>
         </Pressable>
+
     )
 }
 
