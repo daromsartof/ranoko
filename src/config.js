@@ -1,6 +1,9 @@
 export const BASE_URL = 'http://192.168.1.114:3001'
 export const COMPTA_GESTION_URL = 'https://comptaetgestion.fr/databonita/ind/indicateur/show'
 export const LOGIN_URL = `${BASE_URL}/login`
+export const API_URL = {
+    CAISSE: '/api/get-caisse'
+}
 export const UPLOAD_URL = `${BASE_URL}/upload`
 export const CATEGORIES_URL = `${BASE_URL}/categories`
 export const DOSSIERS_URL = `${BASE_URL}/dossiers`
@@ -19,11 +22,12 @@ export const SHADOW_OPACITY = 1
 
 
 export const imageAssets = {
-    login: require('../assets/images/connexion.png'),
     hakarano: require('../assets/images/hakarano.png'),
     ireompakarano: require('../assets/images/ireompakarano.png'),
     bg: require('../assets/images/logoRanoko.png'),
     hakaranoIllustration: require('../assets/images/hakaranoillustration.webp'),
+    boitindrakitra: require('../assets/images/boitindrakitra.png'),
+    logout: require('../assets/images/dec.png')
 }
 
 export const CALANDAR_CONFIG = {
