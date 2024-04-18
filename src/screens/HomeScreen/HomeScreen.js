@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
   ImageBackground,
   StyleSheet,
@@ -14,106 +14,32 @@ import VersionCheck from 'react-native-version-check'
 import { Text } from '@rneui/themed'
 import { SECONDARY_COLOR, imageAssets } from '../../config'
 import styles from './styles/style'
+import HomeService from './services/HomeService'
 
 const HomeScreen = ({ }) => {
-  /*  const {
-      userInfo,
-      isLoading,
-      logout,
-      fetchUserDossiers
+    const {
+      userInfo
     } = useContext(AuthContext)
-    const [user, setUser] = useState({
-      name: '',
-      logo: null,
-      primaryColor: 'white',
-      secondaryColor: 'white'
+    const [caisse, setCaisse] = useState({
+      amount: 0
     })
-    const [loading, setLoading] = useState(false)
-  
-    const pickImage = async () => {
-      setLoading(true)
-      const response = await launchCamera({
-        mediaType: 'photo',
-        includeBase64: true,
-        quality: Platform.OS === 'ios' ? 0.3 : 0.5,
-      })
-  
-      if (response.didCancel) {
-        console.log("L'utilisateur a annulé")
-      } else if (response.error) {
-        console.error('Erreur : ', response.error)
-      } else {
-        const { assets } = response
-        if (assets) {
-          if (assets.length > 0) {
-            const asset = assets[0]
-            const { base64 } = asset
-            navigation.navigate('Sending', { image: base64 })
-          }
-        }
-      }
-      setLoading(false)
+
+    const handleFetshCaisse = async () => {
+      setCaisse(await HomeService.getMyCaisse(userInfo.token))
     }
-  
-    const showHistory = () => {
-      navigation.navigate('History')
+
+    const handLogout = () => {
+      console.log(' here ')
+      //logout()
     }
-  
-    const showGed = () => {
-      navigation.navigate('Ged')
-    }
-  
-    // const showInProgress = () => {
-    //   navigation.navigate('InProgress')
-    // }
-  
-    const showPieceManquante = () => {
-      navigation.navigate("Piecemanquante")
-    }
-  
-    const showIndicateur = () => {
-      navigation.navigate('Indicateur')
-    }
-  
-  
     useEffect(() => {
-      if (userInfo) {
-  
-        const { personnalization, token, idUser } = userInfo
-        fetchUserDossiers(token)
-        if (personnalization) {
-          const { primaryColor, secondaryColor, logo } = personnalization
-  
-          const name = userInfo.lastName ? `${userInfo.lastName} ${userInfo.name}` : userInfo.name
-  
-          const tmpNames = name
-            .split(' ')
-            .map(n => n.charAt(0).toUpperCase() + n.slice(1))
-  
-          setUser({
-            ...user,
-            idUser,
-            name: tmpNames.join(' '),
-            primaryColor,
-            secondaryColor,
-            logo
-          })
-        }
+      handleFetshCaisse()
+    
+      return () => {
+        
       }
     }, [])
-  
-  
-    const handleLogout = () => {
-      Alert.alert("Voulez-vous enregistrer le mot de passe ?", "", [
-        {
-          text: "Non",
-          onPress: () => logout(false, user.idUser),
-          style: 'cancel'
-        },
-        { text: "Oui", onPress: () => logout(true) }
-      ])
-    }
-    */
+    
   return (
     <>
       <Spinner visible={false} />
@@ -128,14 +54,14 @@ const HomeScreen = ({ }) => {
           <View style={styles.image}>
             <View style={[styles.header, { paddingHorizontal: 20 }]}>
               <View style={[styles.userContainer]}>
-                <Text style={styles.userText}>{"Romeo"}</Text>
+                <Text style={styles.userText}>{userInfo.user.name}</Text>
               </View>
             </View>
             <View>
               <View style={styles.infoContainer}>
                 <View style={styles.row}>
                   <Text style={styles.cell}>Ambim-bolako</Text>
-                  <Text style={styles.cell}>2000 ar</Text>
+                  <Text style={styles.cell}>{caisse.amount} ar</Text>
                 </View>
                 <View style={styles.row}>
                   <Text style={styles.cell}>Volako ani anaty boitindrakitra</Text>
@@ -174,73 +100,28 @@ const HomeScreen = ({ }) => {
               <View style={styles.menuContainer}>
                 <MenuBox
                   imgSrc={imageAssets.hakarano}
-                  text="HAKA RANO"
+                  text="FANDEHANY VOLA"
                   onPress={() => { }}
                 />
                 <MenuBox
                   imgSrc={imageAssets.hakarano}
-                  text="HAKA RANO"
+                  text="HANAO RECHARGE"
                   onPress={() => { }}
                 />
               </View>
               <View style={styles.menuContainer}>
                 <MenuBox
-                  imgSrc={imageAssets.hakarano}
-                  text="HAKA RANO"
-                  onPress={() => { }}
-                />
-                <MenuBox
-                  imgSrc={imageAssets.hakarano}
-                  text="HAKA RANO"
-                  onPress={() => { }}
-                />
-              </View>
-            </View>
-           
-            {/**  <View style={styles.content}>
-              <View style={styles.menuContainer}>
-                <MenuBox
-                  imgSrc={imageAssets.hakarano}
-                  text="HAKA RANO"
-                  onPress={() => { }}
-                />
-              </View>
-              <View style={styles.menuContainer}>
-                <MenuBox
-                  imgSrc={imageAssets.imageSended}
-                  text="RANOKO ANDROANY"
-                  onPress={() => { }}
-                />
-              </View>
-              <View style={styles.menuContainer}>
-                <MenuBox
-                  imgSrc={imageAssets.ged}
-                  text="IREO MPAMPIASA RANO"
-                  onPress={() => { }}
-                />
-              </View>
-              <View style={styles.menuContainer}>
-                <MenuBox
-                  imgSrc={imageAssets.indicateurs}
-                  text="VOLAKO"
-                  onPress={() => { }}
-                />
-              </View>
-              <View style={styles.menuContainer}>
-                <MenuBox
-                  imgSrc={imageAssets.echeance}
+                  imgSrc={imageAssets.boitindrakitra}
                   text="BOITINDRAKITRA"
-                  onPress={() => { }}
+                  onPress={() => { console.log('hghgf') }}
                 />
-              </View>
-              <View style={styles.menuContainer}>
                 <MenuBox
                   imgSrc={imageAssets.logout}
                   text="HIALA NY APPLICATION"
-                  onPress={() => { }}
+                  onPress={handLogout}
                 />
               </View>
-            </View>*/}
+            </View>
           </View>
         </ImageBackground>
       </SafeAreaView>

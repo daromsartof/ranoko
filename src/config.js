@@ -1,6 +1,9 @@
 export const BASE_URL = 'http://192.168.1.114:3001'
 export const COMPTA_GESTION_URL = 'https://comptaetgestion.fr/databonita/ind/indicateur/show'
 export const LOGIN_URL = `${BASE_URL}/login`
+export const API_URL = {
+    CAISSE: '/api/get-caisse'
+}
 export const UPLOAD_URL = `${BASE_URL}/upload`
 export const CATEGORIES_URL = `${BASE_URL}/categories`
 export const DOSSIERS_URL = `${BASE_URL}/dossiers`
@@ -19,25 +22,10 @@ export const SHADOW_OPACITY = 1
 
 
 export const imageAssets = {
-    login: require('../assets/images/connexion.png'),
     hakarano: require('../assets/images/hakarano.png'),
     ireompakarano: require('../assets/images/ireompakarano.png'),
-    echeance: require('../assets/images/echeances.png'),
-    logout: require('../assets/images/logout.png'),
-    ged: require('../assets/images/GED1.png'),
-    indicateurs: require('../assets/images/indicateurs.png'),
-    bg: require('../assets/images/logoRanoko.png'),
-    message: require('../assets/images/message.png'),
-    tableauDeBord: require('../assets/images/tableau.png'),
-    tableauDeBord2: require('../assets/images/tableau2.png'),
-    tableauDeBord3: require('../assets/images/tableau5.png'),
-    tableauDeBord4: require('../assets/images/tableau4.png'),
-    VENTES: require('../assets/images/ventes.jpg'),
-    "TRESORERIE FIN DE PERIODE":require('../assets/images/tresoreries.png'),
-    "MARGE BRUTE":require('../assets/images/margesBrutes.jpg'),
-    "EXCEDENT BRUT D'EXPLPOITATION":require('../assets/images/EBE.jpg'),
-    "NOMBRE DE JOURS CLIENTS":require('../assets/images/nombreClient.jpg'),
-    "CHARGES D'EXPLOITATION":require('../assets/images/chargEexploitaiton.png')
+    boitindrakitra: require('../assets/images/boitindrakitra.png'),
+    logout: require('../assets/images/dec.png')
 }
 
 export const CALANDAR_CONFIG = {
