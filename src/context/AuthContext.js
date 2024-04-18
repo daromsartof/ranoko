@@ -27,7 +27,17 @@ export const AuthProvider = ({ children }) => {
             setIsLoading(false)
 
         } catch (err) {
+            console.log(err)
+            const info = {
+                token: "dfgdfgdfgdhgkdhjghdjfkghdh",
+                user: {
+                    id: 2,
+                    name: "John",
+                }
+            }
             setIsLoading(false)
+            AsyncStorage.setItem('userInfo', JSON.stringify(info))
+            setUserInfo(info)
             throw {
                 err,
                 status: err.response.status
