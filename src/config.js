@@ -1,18 +1,11 @@
-export const BASE_URL = 'http://192.168.1.114:3001'
+export const BASE_URL = 'http://192.168.1.115:3000'
 export const COMPTA_GESTION_URL = 'https://comptaetgestion.fr/databonita/ind/indicateur/show'
 export const LOGIN_URL = `${BASE_URL}/login`
 export const API_URL = {
-    CAISSE: '/api/get-caisse'
+    CAISSE: '/api/get-caisse',
+    TAKE_WATER: '/api/take-water'
 }
-export const UPLOAD_URL = `${BASE_URL}/upload`
-export const CATEGORIES_URL = `${BASE_URL}/categories`
-export const DOSSIERS_URL = `${BASE_URL}/dossiers`
-export const HISTORY_URL = `${BASE_URL}/pieceHistory`
-export const NEXT_TACHE = `${BASE_URL}/pm/next-tache/{dossier_id}`
-export const NOTIFICATION_URL = `${BASE_URL}/pm/notification/{dossier_id}`
-export const GED_URL = `${BASE_URL}/ged`
-export const INDICATEURS_URL = `${BASE_URL}/indicateurs`
-export const LAST_MAJ_URL = `${BASE_URL}/dossier/{{dossier_id}}/last-maj`
+
 export const PRIMARY_COLOR = '#90a333'
 export const ERROR_COLOR = '#6a201c'
 export const SECONDARY_COLOR = '#049fe9'

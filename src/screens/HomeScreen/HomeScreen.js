@@ -2,7 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import {
   View,
   SafeAreaView,
-  ScrollView
+  ScrollView,
+  Alert
 } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 import Icon from '../../../assets/images/logoRanoko.png'
@@ -14,9 +15,10 @@ import { SECONDARY_COLOR, imageAssets } from '../../config'
 import styles from './styles/style'
 import HomeService from './services/HomeService'
 
-const HomeScreen = ({ }) => {
+const HomeScreen = ({ navigation }) => {
     const {
-      userInfo
+      userInfo,
+      logout
     } = useContext(AuthContext)
     const [caisse, setCaisse] = useState({
       amount: 0
@@ -27,8 +29,14 @@ const HomeScreen = ({ }) => {
     }
 
     const handLogout = () => {
-      console.log(' here ')
-      //logout()
+      Alert.alert('Tena Hiala ve ?', "", [
+        {
+          text: 'Aaka',
+          onPress: () => { },
+          style: 'cancel'
+        },
+        { text: 'Eny', onPress: () =>  logout()}
+      ])
     }
     useEffect(() => {
       handleFetshCaisse()

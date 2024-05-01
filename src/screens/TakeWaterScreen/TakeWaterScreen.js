@@ -1,9 +1,11 @@
 import { Button, Input, Text } from '@rneui/themed';
 import React from 'react'
 import { StyleSheet, Image, ScrollView, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import CustomInput from '../../components/CustomInput';
+import { useToast } from 'react-native-toast-notifications'
 import { imageAssets } from '../../config';
+import { useState } from 'react';
+import useToken from '../../hooks/useToken';
+import TakeWaterService from './TakeWaterService';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +30,37 @@ const styles = StyleSheet.create({
 })
 
 const TakeWaterScreen = ({ }) => {
+  const [waterCount, setWaterCount] = useState("")
+  const token = useToken()
+  const [isLoading, setIsLoading] = useState(false)
+  const handleChange = (data) => {
+    setWaterCount(data)
+  }
+  const toast = useToast()
 
+  const handleClickSubmit = async () => {
+    if(!waterCount || isNaN(parseInt(waterCount)) ) return 
+    setIsLoading(true)
+    const water = await TakeWaterService.takeWaterToday({
+      number: parseInt(waterCount)
+    }, token)
+    console.log(water)
+    if (water) {
+      setWaterCount("")
+      toast.show(`tontosa somatsara ny fakanao rano ${water.rano?.number} bidao`, {
+        type: 'success',
+        placement: 'top',
+        animationType: 'zoom-in'
+      })
+    } else {
+      toast.show(`nisy tsy fahatomombanana`, {
+        type: 'danger',
+        placement: 'top',
+        animationType: 'zoom-in'
+      })
+    }
+    setIsLoading(false)
+  }
   return (
     <ScrollView >
       <View style={styles.container}>
@@ -64,14 +96,21 @@ const TakeWaterScreen = ({ }) => {
            <Input
               placeholder="Firy Bidao"
               style={{ textAlign: "center" }}
+              value={waterCount}
+              keyboardType='number-pad'
+              onChangeText={text => handleChange(text)}
             />
-            <Button  title="Ok" type="outline" />
+            <Button  
+              title={isLoading ? "miandrasa kely ..." : "ok"}
+              type="outline" 
+              onPress={handleClickSubmit}
+            />
           </View>
            </View>
            
         </View>
       </View>
-
+      
     </ScrollView>
   )
 }
