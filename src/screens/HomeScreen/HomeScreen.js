@@ -16,36 +16,39 @@ import styles from './styles/style'
 import HomeService from './services/HomeService'
 
 const HomeScreen = ({ navigation }) => {
-    const {
-      userInfo,
-      logout
-    } = useContext(AuthContext)
-    const [caisse, setCaisse] = useState({
-      amount: 0
-    })
+  const {
+    userInfo,
+    logout
+  } = useContext(AuthContext)
+  const [caisse, setCaisse] = useState({
+    amount: 0
+  })
 
-    const handleFetshCaisse = async () => {
-      setCaisse(await HomeService.getMyCaisse(userInfo.token))
-    }
+  const [myWater, setMyWater] = useState({
+    all: 0,
+    today: 0,
+    details: []
+  })
 
-    const handLogout = () => {
-      Alert.alert('Tena Hiala ve ?', "", [
-        {
-          text: 'Aaka',
-          onPress: () => { },
-          style: 'cancel'
-        },
-        { text: 'Eny', onPress: () =>  logout()}
-      ])
-    }
-    useEffect(() => {
-      handleFetshCaisse()
-    
-      return () => {
-        
-      }
-    }, [])
-    
+  const handleFetshCaisse = async () => {
+    setCaisse(await HomeService.getMyCaisse(userInfo.token))
+    setMyWater(await HomeService.getMyWaterHistory(userInfo.token))
+  }
+
+  const handLogout = () => {
+    Alert.alert('Tena Hiala ve ?', "", [
+      {
+        text: 'Aaka',
+        onPress: () => { },
+        style: 'cancel'
+      },
+      { text: 'Eny', onPress: () => logout() }
+    ])
+  }
+  useEffect(() => {
+    handleFetshCaisse()
+  }, [navigation])
+
   return (
     <>
       <Spinner visible={false} />
@@ -63,12 +66,41 @@ const HomeScreen = ({ navigation }) => {
               <View style={styles.infoContainer}>
                 <View style={styles.row}>
                   <Text style={styles.cell}>Ambim-bolako</Text>
-                  <Text style={styles.cell}>{caisse.amount} ar</Text>
+                  <Text style={[styles.cell, {
+                    color: caisse.amount < 0 ? 'red' : '#000',
+                    textAlign: 'center'
+                  }]}>{caisse.amount} ar</Text>
                 </View>
                 <View style={styles.row}>
-                  <Text style={styles.cell}>Volako ani anaty boitindrakitra</Text>
-                  <Text style={styles.cell}>3000 ar</Text>
+                  <Text style={styles.cell}>Vola laniko androany</Text>
+                  <Text style={[styles.cell, {
+                    color: caisse.amount < 0 ? 'red' : '#000',
+                    textAlign: 'center'
+                  }]}>{myWater.today  * 50} ar</Text>
                 </View>
+                <View style={styles.row}>
+                  <Text style={styles.cell}>Vola laniko hatrizay</Text>
+                  <Text style={[styles.cell, {
+                    color: caisse.amount < 0 ? 'red' : '#000',
+                    textAlign: 'center'
+                  }]}>{myWater.all  * 50} ar</Text>
+                </View>
+                <View style={styles.row}>
+                  <Text style={styles.cell}>Fitambaran'ny volako ani anaty boitindrakitra</Text>
+                  <Text style={[styles.cell, { textAlign: 'center' }]}>3000 ar</Text>
+                </View>
+              </View>
+              <View >
+                <View>
+                  <Text style={styles.ranotitle}>Rano laniko Androany</Text>
+                </View>
+
+                <View style={styles.indiceContainer}>
+                  <View style={styles.badgeContainer}>
+                    <Text style={styles.badgeText}>{myWater.today} bidao / {myWater.today  * 20} litatra</Text>
+                  </View>
+                </View>
+
               </View>
               <View >
                 <View>
@@ -77,10 +109,7 @@ const HomeScreen = ({ navigation }) => {
 
                 <View style={styles.indiceContainer}>
                   <View style={styles.badgeContainer}>
-                    <Text style={styles.badgeText}>{20} bido</Text>
-                  </View>
-                  <View style={styles.badgeContainer}>
-                    <Text style={styles.badgeText}>15 litre</Text>
+                    <Text style={styles.badgeText}>{myWater.all} bidao / {myWater.all * 20} litatra</Text>
                   </View>
                 </View>
 
@@ -89,7 +118,7 @@ const HomeScreen = ({ navigation }) => {
             <View style={{
               flex: 1
             }}>
-               <View style={styles.menuContainer}>
+              <View style={styles.menuContainer}>
                 <MenuBox
                   imgSrc={imageAssets.hakarano}
                   text="HAKA RANO"
@@ -104,8 +133,8 @@ const HomeScreen = ({ navigation }) => {
               <View style={styles.menuContainer}>
                 <MenuBox
                   imgSrc={imageAssets.hakarano}
-                  text="FANDEHANY VOLA"
-                  onPress={() => { }}
+                  text="FANDEHANY VOLAKO"
+                  onPress={() => navigation.navigate('HistorySreen')}
                 />
                 <MenuBox
                   imgSrc={imageAssets.hakarano}

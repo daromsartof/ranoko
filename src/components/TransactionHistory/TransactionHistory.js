@@ -9,20 +9,26 @@ const TransactionHistory = ({
     <View>
          <FlatList
                 data={data}
-                nestedScrollEnabled
                 renderItem={({ item }) => (
                     <ListItem bottomDivider containerStyle={{ backgroundColor: "transparent" }}>
                         <ListItem.Content>
-                            <ListItem.Title>John Doe</ListItem.Title>
-                            <ListItem.Subtitle>18 avril 2024</ListItem.Subtitle>
+                            <ListItem.Title>{item.caisse.user.name}</ListItem.Title>
+                            <ListItem.Subtitle>{(new Date(item.created_at)).toLocaleString('fr', { timeZoneName: 'short' })}</ListItem.Subtitle>
                         </ListItem.Content>
                         <ListItem.Content>
-                            <ListItem.Subtitle>20 000 ar</ListItem.Subtitle>
+                            <ListItem.Subtitle
+                                style={{
+                                    color: item.credit ? 'green' : 'red',
+                                    textAlign: 'center',
+                                    width: '100%'
+                                }}
+                            
+                            >{item.credit || item.debit} ar</ListItem.Subtitle>
                         </ListItem.Content>
                     </ListItem>
                 )}
 
-                keyExtractor={item => item}
+                keyExtractor={item => item.id}
             />
     </View>
   )

@@ -20,7 +20,6 @@ export default StyleSheet.create({
     },
     modalText: {
         textAlign: 'center',
-        color: '#fff',
         fontSize: 20
     }
 })

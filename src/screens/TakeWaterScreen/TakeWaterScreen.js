@@ -6,6 +6,7 @@ import { imageAssets } from '../../config';
 import { useState } from 'react';
 import useToken from '../../hooks/useToken';
 import TakeWaterService from './TakeWaterService';
+import ModalMessage from '../../components/common/modal/ModalMessage';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,10 +30,14 @@ const styles = StyleSheet.create({
   }
 })
 
-const TakeWaterScreen = ({ }) => {
+const TakeWaterScreen = ({navigation }) => {
   const [waterCount, setWaterCount] = useState("")
   const token = useToken()
   const [isLoading, setIsLoading] = useState(false)
+  const [modale, setModal] = useState({
+    isVisible: false,
+    message: ''
+  })
   const handleChange = (data) => {
     setWaterCount(data)
   }
@@ -44,13 +49,14 @@ const TakeWaterScreen = ({ }) => {
     const water = await TakeWaterService.takeWaterToday({
       number: parseInt(waterCount)
     }, token)
-    console.log(water)
+
     if (water) {
       setWaterCount("")
-      toast.show(`tontosa somatsara ny fakanao rano ${water.rano?.number} bidao`, {
-        type: 'success',
-        placement: 'top',
-        animationType: 'zoom-in'
+      setModal(() => {
+        return {
+          message: `tontosa somatsara ny fakanao rano ${water.rano?.number} bidao @ vidiny ${water.rano?.number * 50} ar`,
+          isVisible: true
+        }
       })
     } else {
       toast.show(`nisy tsy fahatomombanana`, {
@@ -60,6 +66,15 @@ const TakeWaterScreen = ({ }) => {
       })
     }
     setIsLoading(false)
+  }
+  const handleClickOkModal = () => {
+    setModal((modal) => {
+      return {
+        ...modal,
+        isVisible: false
+      }
+    })
+    navigation.navigate('Home')
   }
   return (
     <ScrollView >
@@ -109,6 +124,11 @@ const TakeWaterScreen = ({ }) => {
            </View>
            
         </View>
+        <ModalMessage
+          modalVisible={modale.isVisible}
+          message={modale.message}
+          setModalVisible={handleClickOkModal}
+        />
       </View>
       
     </ScrollView>

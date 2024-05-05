@@ -63,10 +63,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     infoContainer: {
+        marginTop:20
     },
     badgeContainer: {
-        width: 150, 
-        height: 150, 
+        width: 400, 
+        height: 50, 
         borderRadius: 50, 
         backgroundColor: SECONDARY_COLOR, 
         justifyContent: 'center',

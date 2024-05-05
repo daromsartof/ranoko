@@ -3,7 +3,10 @@ export const COMPTA_GESTION_URL = 'https://comptaetgestion.fr/databonita/ind/ind
 export const LOGIN_URL = `${BASE_URL}/login`
 export const API_URL = {
     CAISSE: '/api/get-caisse',
-    TAKE_WATER: '/api/take-water'
+    TAKE_WATER: '/api/take-water',
+    BOITINDRAKITRA: '/api/boitindrakitra',
+    MY_HISTORY: '/api/my-history',
+    MY_WATER: '/api/ranoko'
 }
 
 export const PRIMARY_COLOR = '#90a333'
@@ -20,7 +23,8 @@ export const imageAssets = {
     bg: require('../assets/images/logoRanoko.png'),
     hakaranoIllustration: require('../assets/images/hakaranoillustration.webp'),
     boitindrakitra: require('../assets/images/boitindrakitra.png'),
-    logout: require('../assets/images/dec.png')
+    logout: require('../assets/images/dec.png'),
+    message: require('../assets/images/message.png')
 }
 
 export const CALANDAR_CONFIG = {

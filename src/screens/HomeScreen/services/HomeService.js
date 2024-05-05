@@ -19,6 +19,26 @@ class HomeService {
             }
         }
     }
+
+    async getMyWaterHistory(token) {
+        try {
+            const mywater = await axios.get(
+                API_URL.MY_WATER,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            )
+            return mywater.data
+        } catch (error) {
+            return {
+                all: 0,
+                today: 0,
+                details: []
+            }
+        }
+    }
 }
 
 export default new HomeService()

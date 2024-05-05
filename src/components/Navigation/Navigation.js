@@ -10,7 +10,7 @@ import SplashScreen from '../../screens/SplashScreen'
 import Header from '../Header'
 import TakeWaterScreen from '../../screens/TakeWaterScreen'
 import BoitindrakitraScreen from '../../screens/BoitindrakitraScreen'
-import BoitindrakitraHistoryScreen from '../../screens/BoitindrakitraScreen/BoitindrakitraHistoryScreen'
+import HistorySreen from '../../screens/HistorySreen'
 import UserProfileScreen from '../../screens/UserProfileScreen/UserProfileScreen'
 
 const Stack = createNativeStackNavigator()
@@ -71,9 +71,9 @@ const Navigation = () => {
               options={{ title: "Boitindrakitra" }}
             />
             <Stack.Screen
-              name="BoitindrakitraHistoryScreen"
-              component={BoitindrakitraHistoryScreen}
-              options={{ title: "Historika Boitindrakitra" }}
+              name="HistorySreen"
+              component={HistorySreen}
+              options={{ title: "Historika" }}
             />
              <Stack.Screen
               name="UserProfileScreen"
