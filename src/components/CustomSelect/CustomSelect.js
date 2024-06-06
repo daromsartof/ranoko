@@ -77,16 +77,6 @@ const CustomSelect = ({ label, placeholder, selectedItem, items, onChange, withL
             {withLabel && (
                 <Text style={styles.label}>{label}</Text>
             )}
-
-            {/* <RNPickerSelect
-            onValueChange={(value) => onChange(value)}
-            items={items}
-            placeholder={placeholder}
-        >
-            <View style={[styles.input, (borderBottomColor) ? {borderBottomColor} : {}]}>
-                 <Text style={styles.label}>{truncate(selectedItemLabel, 20)}</Text>
-            </View>
-        </RNPickerSelect>                      */}
             <Dropdown
                 style={styles.dropdown}
                 placeholderStyle={styles.placeholderStyle}

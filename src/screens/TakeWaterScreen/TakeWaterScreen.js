@@ -1,5 +1,5 @@
 import { Button, Input, Text } from '@rneui/themed';
-import React from 'react'
+import React, { useContext } from 'react'
 import { StyleSheet, Image, ScrollView, View } from 'react-native'
 import { useToast } from 'react-native-toast-notifications'
 import { imageAssets } from '../../config';
@@ -7,6 +7,7 @@ import { useState } from 'react';
 import useToken from '../../hooks/useToken';
 import TakeWaterService from './TakeWaterService';
 import ModalMessage from '../../components/common/modal/ModalMessage';
+import { AuthContext } from '../../context/AuthContext';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,6 +35,9 @@ const TakeWaterScreen = ({navigation }) => {
   const [waterCount, setWaterCount] = useState("")
   const token = useToken()
   const [isLoading, setIsLoading] = useState(false)
+  const {
+    setRefrechHome
+  } = useContext(AuthContext)
   const [modale, setModal] = useState({
     isVisible: false,
     message: ''
@@ -74,6 +78,7 @@ const TakeWaterScreen = ({navigation }) => {
         isVisible: false
       }
     })
+    setRefrechHome(true)
     navigation.navigate('Home')
   }
   return (

@@ -30,19 +30,21 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     image: {
-        width: 90,
-        height: 90
+        width: 110,
+        height: 110
     }
 })
 
-const MenuBox = ({ icon, text, onPress, bgColor, imgSrc }) => {
+const MenuBox = ({ icon, text, onPress, bgColor, imgSrc, imgWidth=110 }) => {
     return (
 
         <Pressable onPress={onPress} style={{ flex: 0.5, margin: 5 }}>
             <View style={{ flexDirection: "column", justifyContent: "center", alignItems:"center" }}>
                 <View>
                     {icon ? <Icon name={icon} size={60} color="#595c5a" /> : (
-                        <Image style={styles.image} source={imgSrc} />
+                        <Image style={[styles.image, {
+                            width: imgWidth
+                        }]} resizeMode='cover' source={imgSrc} />
                     )}
                 </View>
                 <View style={[{width: "100%",paddingVertical:5, backgroundColor: bgColor || SECONDARY_COLOR }]}>

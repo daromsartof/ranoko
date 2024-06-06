@@ -12,7 +12,7 @@ import TakeWaterScreen from '../../screens/TakeWaterScreen'
 import BoitindrakitraScreen from '../../screens/BoitindrakitraScreen'
 import HistorySreen from '../../screens/HistorySreen'
 import UserProfileScreen from '../../screens/UserProfileScreen/UserProfileScreen'
-
+import Recharge from '../../screens/Recharge'
 const Stack = createNativeStackNavigator()
 
 const Navigation = () => {
@@ -79,6 +79,11 @@ const Navigation = () => {
               name="UserProfileScreen"
               component={UserProfileScreen}
               options={{ title: "Profile" }}
+            />
+             <Stack.Screen
+              name="Recharge"
+              component={Recharge}
+              options={{ title: "Hanao Recharge" }}
             />
           </>
         ) : (

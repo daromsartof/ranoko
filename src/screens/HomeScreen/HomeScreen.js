@@ -18,7 +18,9 @@ import HomeService from './services/HomeService'
 const HomeScreen = ({ navigation }) => {
   const {
     userInfo,
-    logout
+    logout,
+    refrechHome,
+    setRefrechHome
   } = useContext(AuthContext)
   const [caisse, setCaisse] = useState({
     amount: 0
@@ -33,6 +35,7 @@ const HomeScreen = ({ navigation }) => {
   const handleFetshCaisse = async () => {
     setCaisse(await HomeService.getMyCaisse(userInfo.token))
     setMyWater(await HomeService.getMyWaterHistory(userInfo.token))
+    setRefrechHome(false)
   }
 
   const handLogout = () => {
@@ -47,7 +50,7 @@ const HomeScreen = ({ navigation }) => {
   }
   useEffect(() => {
     handleFetshCaisse()
-  }, [navigation])
+  }, [refrechHome])
 
   return (
     <>
@@ -121,25 +124,28 @@ const HomeScreen = ({ navigation }) => {
               <View style={styles.menuContainer}>
                 <MenuBox
                   imgSrc={imageAssets.hakarano}
+                  imgWidth={220}
                   text="HAKA RANO"
                   onPress={() => navigation.navigate("TakeWaterScreen")}
                 />
                 <MenuBox
                   imgSrc={imageAssets.ireompakarano}
+                  imgWidth={220}
                   text="IREO MPAMPIASA RANO"
                   onPress={() => navigation.navigate("ListUserScreen")}
                 />
               </View>
               <View style={styles.menuContainer}>
                 <MenuBox
-                  imgSrc={imageAssets.hakarano}
+                  imgSrc={imageAssets.fandehambola}
                   text="FANDEHANY VOLAKO"
+                  imgWidth={220}
                   onPress={() => navigation.navigate('HistorySreen')}
                 />
                 <MenuBox
                   imgSrc={imageAssets.hakarano}
                   text="HANAO RECHARGE"
-                  onPress={() => { }}
+                  onPress={() => navigation.navigate('Recharge')}
                 />
               </View>
               <View style={styles.menuContainer}>

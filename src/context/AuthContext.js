@@ -8,6 +8,7 @@ export const AuthContext = createContext()
 export const AuthProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState({})
     const [isLoading, setIsLoading] = useState(false)
+    const [refrechHome, setRefrechHome] = useState(false)
     const [splashLoading, setSplashLoading] = useState(false)
 
     const login = async ({ password, username }) => {
@@ -70,6 +71,8 @@ export const AuthProvider = ({ children }) => {
                 isLoading,
                 userInfo,
                 splashLoading,
+                setRefrechHome,
+                refrechHome,
                 login,
                 logout
             }}>

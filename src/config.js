@@ -18,13 +18,14 @@ export const SHADOW_OPACITY = 1
 
 
 export const imageAssets = {
-    hakarano: require('../assets/images/hakarano.png'),
-    ireompakarano: require('../assets/images/ireompakarano.png'),
+    hakarano: require('../assets/images/hakarano.jpeg'),
+    ireompakarano: require('../assets/images/mpakarano.jpg'),
     bg: require('../assets/images/logoRanoko.png'),
     hakaranoIllustration: require('../assets/images/hakaranoillustration.webp'),
     boitindrakitra: require('../assets/images/boitindrakitra.png'),
     logout: require('../assets/images/dec.png'),
-    message: require('../assets/images/message.png')
+    message: require('../assets/images/message.png'),
+    fandehambola: require('../assets/images/vola.jpg')
 }
 
 export const CALANDAR_CONFIG = {
